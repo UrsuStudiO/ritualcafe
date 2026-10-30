@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-accent: var(--accent);
+  --color-soft: var(--soft);
+  --color-line: var(--line);
+  --font-display: "Fraunces", serif;
+  --font-sans: "Instrument Sans", sans-serif;
+}
+
+/* Paleta: el tema oscuro solo redefine las variables bajo .dark (ver index.html y ThemeToggle). */
+:root {
+  --bg: #F3EADB;
+  --fg: #2A1B13;
+  --accent: #B5532B;
+  --soft: #E6D8C1;
+  --line: rgba(42, 27, 19, .2);
+}
+.dark {
+  --bg: #17100C;
+  --fg: #F0E4D0;
+  --accent: #E08A52;
+  --soft: #241913;
+  --line: rgba(240, 228, 208, .2);
+}
+
+/* Lenis se encarga del suavizado; el scroll nativo suave lo contradice. */
+html { scroll-behavior: auto; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Cambio de tema con View Transitions: se desactiva el fundido por defecto
+   para que solo se vea el círculo animado desde JS (ThemeToggle). */
+::view-transition-old(root),
+::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }
